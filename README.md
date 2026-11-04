@@ -67,7 +67,7 @@ dotnet publish src/ShaderStudio.App/ShaderStudio.App.csproj -c Release -r win-x6
 
 # instalator MSI (wymaga WiX 5 jako narzędzia .NET):
 dotnet tool install --global wix --version 5.*
-wix build installer/ShaderStudio.wxs -d ProductVersion=1.0.0.0 \
+wix build installer/ShaderStudio.wxs -d ProductVersion=1.0.1.0 \
   -o installer/out/ShaderStudio-Setup.msi -arch x64
 ```
 

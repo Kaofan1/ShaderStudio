@@ -8,7 +8,7 @@
   Budowanie (uruchamiac z katalogu glownego repozytorium; wymagane narzedzie
   WiX w wersji 5, nowsze wersje wymagaja platnej licencji OSMF):
     dotnet tool install wix (parametr version ustawiony na 5.*)
-    wix build installer/ShaderStudio.wxs -d ProductVersion=1.0.0.0
+    wix build installer/ShaderStudio.wxs -d ProductVersion=1.0.1.0
               -o installer/out/ShaderStudio-Setup.msi -arch x64
 -->
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
