@@ -37,9 +37,10 @@ public sealed class GitHubUpdateClient : IDisposable
     }
 
     public bool IsConfigured =>
-        !string.IsNullOrWhiteSpace(_owner)
-        && !string.Equals(_owner, AppInfo.DefaultRepositoryOwner, StringComparison.OrdinalIgnoreCase)
-        && !string.IsNullOrWhiteSpace(_repository);
+        AppInfo.IsUpdateChannelConfigured
+        || (!string.IsNullOrWhiteSpace(_owner)
+            && !string.Equals(_owner, "OWNER", StringComparison.OrdinalIgnoreCase)
+            && !string.IsNullOrWhiteSpace(_repository));
 
     public ReleaseVersion CurrentVersion => ReleaseVersion.Parse(AppInfo.Version);
 

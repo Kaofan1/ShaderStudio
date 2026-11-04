@@ -81,6 +81,16 @@ public sealed class UpdateTests
     }
 
     [Fact]
+    public void AppInfo_UpdateChannelIsConfiguredForThisRepository()
+    {
+        // Regression guard: the "not configured" check must not compare the owner with itself
+        // once a real repository is filled in, or updates would silently never run.
+        Assert.True(AppInfo.IsUpdateChannelConfigured);
+        Assert.Equal("https://github.com/Kaofan1/ShaderStudio", AppInfo.RepositoryUrl);
+        Assert.False(string.IsNullOrWhiteSpace(AppInfo.Version));
+    }
+
+    [Fact]
     public void AppState_FreshInstanceChecksForUpdatesByDefault()
     {
         // A fresh instance is used on purpose: AppState.Load() reads the real user profile,

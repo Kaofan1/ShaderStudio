@@ -13,10 +13,13 @@ public static class AppInfo
 
     public const string ProductTagline = "Ustawienia shaderów ReShade / FiveM";
 
-    /// <summary>Placeholder owner. Change it (or set SHADERSTUDIO_REPO_OWNER) after creating the repo.</summary>
+    /// <summary>Repository that publishes the updates (override with SHADERSTUDIO_REPO_OWNER).</summary>
     public const string DefaultRepositoryOwner = "Kaofan1";
 
     public const string DefaultRepositoryName = "ShaderStudio";
+
+    /// <summary>Owner value that means "no repository configured yet".</summary>
+    private const string UnconfiguredOwnerMarker = "OWNER";
 
     /// <summary>Folder created under %APPDATA% for application state.</summary>
     public const string AppDataFolderName = "ShaderStudio";
@@ -33,7 +36,7 @@ public static class AppInfo
     /// </summary>
     public static bool IsUpdateChannelConfigured =>
         !string.IsNullOrWhiteSpace(RepositoryOwner)
-        && !string.Equals(RepositoryOwner, DefaultRepositoryOwner, StringComparison.OrdinalIgnoreCase)
+        && !string.Equals(RepositoryOwner, UnconfiguredOwnerMarker, StringComparison.OrdinalIgnoreCase)
         && !string.IsNullOrWhiteSpace(RepositoryName);
 
     /// <summary>Version of the running build, e.g. "1.0.0" (build metadata after '+' is stripped).</summary>
