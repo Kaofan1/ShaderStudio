@@ -49,7 +49,7 @@ jobs:
           dotnet tool install --global wix --version 5.*
           wix build installer/ShaderStudio.wxs `
             -d ProductVersion=$msiVersion `
-            -o "installer/out/ShaderStudio-Setup-$version.msi" `
+            -o "installer/out/ShaderStudio-Setup.msi" `
             -arch x64
           Get-ChildItem installer/out
 
@@ -57,7 +57,7 @@ jobs:
         shell: pwsh
         run: |
           $lines = @()
-          foreach ($file in @('publish/ShaderStudio.exe', 'installer/out/ShaderStudio-Setup-' + '${{ github.ref_name }}'.TrimStart('v') + '.msi')) {
+          foreach ($file in @('publish/ShaderStudio.exe', 'installer/out/ShaderStudio-Setup.msi')) {
             if (Test-Path $file) {
               $hash = (Get-FileHash -Algorithm SHA256 $file).Hash.ToLower()
               $lines += "$hash  $(Split-Path $file -Leaf)"

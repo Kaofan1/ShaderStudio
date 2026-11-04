@@ -13,7 +13,8 @@ Repozytorium: <https://github.com/Kaofan1/ShaderStudio>
 
 ## Instalacja (Windows)
 
-**Instalator MSI** – pobierz `ShaderStudio-Setup-X.Y.Z.msi` z zakładki *Releases* i uruchom go dwuklikiem.
+**Instalator MSI** – pobierz `ShaderStudio-Setup.msi` z zakładki *Releases* i uruchom go dwuklikiem
+(nazwa pliku jest stala; numer wersji znajdziesz w nazwie wydania i w *Dodaj lub usuń programy*).
 
 - instaluje dla bieżącego użytkownika, **bez pytania o uprawnienia administratora**,
 - pliki trafiają do `%LOCALAPPDATA%\Programs\Shader Studio`,
@@ -67,7 +68,7 @@ dotnet publish src/ShaderStudio.App/ShaderStudio.App.csproj -c Release -r win-x6
 # instalator MSI (wymaga WiX 5 jako narzędzia .NET):
 dotnet tool install --global wix --version 5.*
 wix build installer/ShaderStudio.wxs -d ProductVersion=1.0.0.0 \
-  -o installer/out/ShaderStudio-Setup-1.0.0.msi -arch x64
+  -o installer/out/ShaderStudio-Setup.msi -arch x64
 ```
 
 `publish/ShaderStudio.exe` i `installer/out/*.msi` to gotowe artefakty.
