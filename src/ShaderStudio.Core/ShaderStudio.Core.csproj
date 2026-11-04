@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>ShaderStudio.Core</RootNamespace>
+    <AssemblyName>ShaderStudio.Core</AssemblyName>
+  </PropertyGroup>
+
+</Project>

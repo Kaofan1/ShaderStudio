@@ -1,0 +1,30 @@
+# --- .NET build output ---
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+*.user
+*.suo
+.vs/
+publish/
+artifacts/
+installer/out/
+
+# --- Local tooling (SDK installed per-repo, not committed) ---
+.dotnet/
+.tools/
+nuget.config.local
+
+# --- Third-party shader package / sample data ---
+# CoreFX is distributed under its own EULA, which forbids redistribution.
+# Never commit it, its shaders or its binaries to this repository.
+CoreFX_Legacy_FiveM/
+
+# --- OS noise ---
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# --- Local logs / diagnostics ---
+*.log
+diagnose*.txt

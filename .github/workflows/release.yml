@@ -1,0 +1,77 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Test
+        run: dotnet test ShaderStudio.slnx -c Release
+
+      - name: Publish single-file executable
+        shell: bash
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          if [ -z "$VERSION" ] || [ "$VERSION" = "$GITHUB_REF_NAME" ]; then VERSION="0.0.0-dev"; fi
+          echo "Wersja: $VERSION"
+          dotnet publish src/ShaderStudio.App/ShaderStudio.App.csproj \
+            -c Release -r win-x64 --self-contained true \
+            -p:PublishSingleFile=true \
+            -p:IncludeNativeLibrariesForSelfExtract=true \
+            -p:EnableCompressionInSingleFile=true \
+            -p:Version="$VERSION" \
+            -p:InformationalVersion="$VERSION" \
+            -o publish
+
+      - name: Build MSI installer
+        shell: pwsh
+        run: |
+          $version = '${{ github.ref_name }}'.TrimStart('v')
+          if (-not $version -or $version -eq '${{ github.ref_name }}') { $version = '0.0.0' }
+          $msiVersion = "$version.0"
+          Write-Host "Wersja instalatora: $msiVersion"
+
+          dotnet tool install --global wix --version 5.*
+          wix build installer/ShaderStudio.wxs `
+            -d ProductVersion=$msiVersion `
+            -o "installer/out/ShaderStudio-Setup-$version.msi" `
+            -arch x64
+          Get-ChildItem installer/out
+
+      - name: Checksums
+        shell: pwsh
+        run: |
+          $lines = @()
+          foreach ($file in @('publish/ShaderStudio.exe', 'installer/out/ShaderStudio-Setup-' + '${{ github.ref_name }}'.TrimStart('v') + '.msi')) {
+            if (Test-Path $file) {
+              $hash = (Get-FileHash -Algorithm SHA256 $file).Hash.ToLower()
+              $lines += "$hash  $(Split-Path $file -Leaf)"
+            }
+          }
+          $lines | Set-Content -Encoding ascii SHA256SUMS.txt
+          Get-Content SHA256SUMS.txt
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Shader Studio ${{ github.ref_name }}
+          generate_release_notes: true
+          files: |
+            publish/ShaderStudio.exe
+            installer/out/*.msi
+            SHA256SUMS.txt

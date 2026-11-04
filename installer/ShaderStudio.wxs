@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Instalator Shader Studio (MSI, instalacja dla biezacego uzytkownika, bez UAC).
+
+  Instaluje do %LOCALAPPDATA%\Programs\Shader Studio, dzieki czemu automatyczne
+  aktualizacje moga podmienic plik exe bez uprawnien administratora.
+
+  Budowanie (uruchamiac z katalogu glownego repozytorium; wymagane narzedzie
+  WiX w wersji 5, nowsze wersje wymagaja platnej licencji OSMF):
+    dotnet tool install wix (parametr version ustawiony na 5.*)
+    wix build installer/ShaderStudio.wxs -d ProductVersion=1.0.0.0
+              -o installer/out/ShaderStudio-Setup-1.0.0.msi -arch x64
+-->
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+
+  <Package Name="Shader Studio for FiveM"
+           Manufacturer="Kaofan"
+           Version="$(var.ProductVersion)"
+           UpgradeCode="8f3c1d64-5b27-4e0a-9c6d-2a7b45e91c30"
+           Scope="perUser"
+           Compressed="yes">
+
+    <SummaryInformation Description="Shader Studio for FiveM - edytor ustawien shaderow" Manufacturer="Kaofan" />
+
+    <MajorUpgrade DowngradeErrorMessage="Nowsza wersja Shader Studio jest juz zainstalowana. Odinstaluj ja najpierw." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Property Id="ARPNOMODIFY" Value="1" />
+    <Property Id="ARPNOREPAIR" Value="1" />
+    <Property Id="ARPURLINFOABOUT" Value="https://github.com/Kaofan1/ShaderStudio" />
+    <Property Id="ARPHELPLINK" Value="https://github.com/Kaofan1/ShaderStudio#readme" />
+    <Property Id="ARPPRODUCTICON" Value="AppIcon" />
+
+    <Icon Id="AppIcon" SourceFile="src\ShaderStudio.App\Assets\app.ico" />
+
+    <StandardDirectory Id="LocalAppDataFolder">
+      <Directory Id="ProgramsFolder" Name="Programs">
+        <Directory Id="INSTALLFOLDER" Name="Shader Studio" />
+      </Directory>
+    </StandardDirectory>
+
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="AppMenuFolder" Name="Shader Studio" />
+    </StandardDirectory>
+
+    <Feature Id="Main" Title="Shader Studio for FiveM" Level="1" AllowAbsent="no">
+      <ComponentGroupRef Id="AppComponents" />
+    </Feature>
+
+    <ComponentGroup Id="AppComponents" Directory="INSTALLFOLDER">
+
+      <Component Id="MainExecutable" Guid="*">
+        <File Id="ShaderStudioExe" Source="publish\ShaderStudio.exe" KeyPath="yes">
+          <Shortcut Id="StartMenuShortcut"
+                    Directory="AppMenuFolder"
+                    Name="Shader Studio"
+                    Description="Edytor ustawien shaderow dla FiveM"
+                    WorkingDirectory="INSTALLFOLDER"
+                    Advertise="yes" />
+        </File>
+      </Component>
+
+      <Component Id="UninstallShortcut" Guid="*" Directory="AppMenuFolder">
+        <Shortcut Id="UninstallLink"
+                  Name="Odinstaluj Shader Studio"
+                  Description="Usuwa Shader Studio z tego komputera"
+                  Target="[SystemFolder]msiexec.exe"
+                  Arguments="/x [ProductCode]" />
+        <RegistryValue Root="HKCU"
+                       Key="Software\Kaofan\ShaderStudio"
+                       Name="Installed"
+                       Type="integer"
+                       Value="1"
+                       KeyPath="yes" />
+      </Component>
+
+    </ComponentGroup>
+
+  </Package>
+</Wix>

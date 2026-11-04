@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ShaderStudio.App/ShaderStudio.App.csproj" />
+    <Project Path="src/ShaderStudio.Core/ShaderStudio.Core.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ShaderStudio.Core.Tests/ShaderStudio.Core.Tests.csproj" />
+  </Folder>
+</Solution>
