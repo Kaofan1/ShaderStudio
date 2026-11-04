@@ -107,18 +107,18 @@ public sealed class PolishSchemaTranslator : ISchemaTranslator
         ["ScreenDropsDefocused"] = new("Styl rozmytych kropli", "Wyłączone = realistyczne krople na szybie (domyślnie). Włączone = duże, rozmyte krążki (bokeh)."),
 
         // --- Szczegóły tekstur ---
-        ["EnableTextureDetail"] = new("Szczegóły tekstur", "Główny przełącznik: wyłączenie przywraca shadery dróg do wersji vanilla — parallax, własne cienie, AO, dodatkowa oktawa detalu, jitter połysku i odszumianie chromy."),
+        ["EnableTextureDetail"] = new("Szczegóły tekstur", "Główny przełącznik: wyłączenie przywraca shadery dróg do wersji vanilla - parallax, własne cienie, AO, dodatkowa oktawa detalu, jitter połysku i odszumianie chromy."),
         ["TexParallaxHeight"] = new("Głębokość parallaxu", "Jak głęboki wydaje się relief nawierzchni. 0 = płasko."),
         ["TexParallaxShadows"] = new("Cienie parallaxu", "Relief drogi rzuca własne, drobne cienie w stronę słońca."),
         ["TexParallaxAO"] = new("AO parallaxu", "Okluzja otoczenia w zagłębieniach reliefu drogi."),
 
         // --- Opcje ---
-        ["HideShaderWarning"] = new("Ukryj ostrzeżenia na ekranie", "Trwale wyłącza rysowany przez dodatek komunikat \"postfx composite not loaded\". Nie zmienia sposobu renderowania — przestajesz tylko dostawać informację. Ustawienie jest pamiętane między uruchomieniami."),
+        ["HideShaderWarning"] = new("Ukryj ostrzeżenia na ekranie", "Trwale wyłącza rysowany przez dodatek komunikat \"postfx composite not loaded\". Nie zmienia sposobu renderowania - przestajesz tylko dostawać informację. Ustawienie jest pamiętane między uruchomieniami."),
 
         // --- HDR ---
         ["HdrToneMapType"] = new("Mapper tonów", "Mapper tonów HDR. RenoDRT rozciąga światła do szczytowej jasności (filmiczny mapper Hable→HDR używany w większości portów RenoDX) i jest zalecany, gdy HDR jest aktywny. PsychoV-17 / PsychoV-22 to mappery percepcyjne, które utrzymują średnie jasności blisko bieli papieru, a szczyt zostawiają prawdziwym światłom (słońce, refleksy, emisje)."),
         ["HdrPeakNits"] = new("Szczytowa jasność", "Szczytowa jasność monitora w nitach. Dopasuj do swojego ekranu HDR."),
-        ["HdrGameNits"] = new("Jasność gry", "Biel rozproszona (biel papieru) w nitach — jasność powierzchni w 100% białej."),
+        ["HdrGameNits"] = new("Jasność gry", "Biel rozproszona (biel papieru) w nitach - jasność powierzchni w 100% białej."),
         ["HdrUINits"] = new("Jasność interfejsu", "Jasność HUD i menu w nitach. Zwykle równa jasności gry."),
         ["HdrGammaCorrection"] = new("Korekcja gammy", "Kompensuje gamę 2.2, dla której powstaje większość treści SDR. BT.1886 to krzywa broadcast. Wyłączone = bez zmian w zapisie."),
         ["HdrWhiteClip"] = new("Odcięcie bieli", "Odcięcie bieli dla RenoDRT."),

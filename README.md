@@ -2,7 +2,7 @@
 
 Nieoficjalna aplikacja desktopowa (.NET 10 + Avalonia) do wygodnej edycji ustawień shaderów ReShade
 używanych na serwerach **FiveM**. Zamiast klikać po menu ReShade w grze, dostajesz normalne okno
-z zakładkami, wyszukiwarką, presetami i automatycznymi aktualizacjami — **w całości po polsku**.
+z zakładkami, wyszukiwarką, presetami i automatycznymi aktualizacjami - **w całości po polsku**.
 
 > **To nie jest oficjalne narzędzie CoreFX ani ReShade.** Projekt nie jest powiązany z autorami
 > shaderów, Rockstar Games ani Take-Two. Nazwy produktów należą do ich właścicieli.
@@ -13,7 +13,7 @@ Repozytorium: <https://github.com/Kaofan1/ShaderStudio>
 
 ## Instalacja (Windows)
 
-**Instalator MSI** – pobierz `ShaderStudio-Setup.msi` z zakładki *Releases* i uruchom go dwuklikiem
+**Instalator MSI** - pobierz `ShaderStudio-Setup.msi` z zakładki *Releases* i uruchom go dwuklikiem
 (nazwa pliku jest stala; numer wersji znajdziesz w nazwie wydania i w *Dodaj lub usuń programy*).
 
 - instaluje dla bieżącego użytkownika, **bez pytania o uprawnienia administratora**,
@@ -23,24 +23,24 @@ Repozytorium: <https://github.com/Kaofan1/ShaderStudio>
 - instalacja w folderze użytkownika jest celowa: dzięki temu auto-aktualizacja może podmienić plik
   `.exe` bez uprawnień administratora.
 
-**Wersja przenośna** – `ShaderStudio.exe` z *Releases* to jeden samodzielny plik (self-contained),
+**Wersja przenośna** - `ShaderStudio.exe` z *Releases* to jeden samodzielny plik (self-contained),
 który wystarczy położyć w dowolnym folderze.
 
 ## Co robi aplikacja
 
-- **Wykrywa instalację** – szuka folderu `plugins` FiveM (`%LOCALAPPDATA%\FiveM\FiveM.app\plugins`)
+- **Wykrywa instalację** - szuka folderu `plugins` FiveM (`%LOCALAPPDATA%\FiveM\FiveM.app\plugins`)
   i sprawdza, czy zawiera `CustomShaders\settings.json`. Folder można też wskazać ręcznie.
 - **Czyta schemat ustawień** z `settings.json` (`tabs`, `groups`, `ui_settings`, `links`) i buduje
   z niego interfejs: przełączniki, suwaki, listy wyboru i kolory RGBA.
-- **Polski interfejs** – nazwy zakładek, sekcji, ustawień i podpowiedzi są tłumaczone w
+- **Polski interfejs** - nazwy zakładek, sekcji, ustawień i podpowiedzi są tłumaczone w
   `src/ShaderStudio.Core/Localization/PolishSchemaTranslator.cs`. Klucze ustawień pozostają
   oryginalne, więc plik i profile są w pełni zgodne z dodatkiem. Nowe ustawienia, których nie ma
   w słowniku, pokazują się po angielsku (nic nie znika).
 - **Zapisuje zmiany do tego samego pliku**, zachowując pola, których aplikacja nie zna. Przed
   zapisem powstaje kopia `settings.json.bak`, a zapis jest atomowy (plik tymczasowy + podmiana).
 - **Wyszukiwarka** ustawień po nazwie, kluczu, sekcji i podpowiedzi.
-- **Przywracanie domyślnych** – globalnie („Cofnij zmiany”) lub pojedynczo (ikona ↺ przy wierszu).
-- **Profile** – eksport/import aktualnych wartości do pliku JSON, np. `deszcz.json`, `sucho.json`.
+- **Przywracanie domyślnych** - globalnie („Cofnij zmiany”) lub pojedynczo (ikona ↺ przy wierszu).
+- **Profile** - eksport/import aktualnych wartości do pliku JSON, np. `deszcz.json`, `sucho.json`.
 - **Wersja aplikacji widoczna w środku**: plakietka `wersja X.Y.Z` w nagłówku, pełny tekst
   `Wersja aplikacji: X.Y.Z` w pasku stanie oraz w tytule okna.
 - **Automatyczne aktualizacje** z GitHub Releases.
@@ -85,7 +85,7 @@ Kod wyjścia: `0` = OK, `2` = brak instalacji, `3` = błąd schematu, `4` = bł�
 
 ## Automatyczne aktualizacje
 
-Aplikacja korzysta z **GitHub Releases** – bez własnego serwera.
+Aplikacja korzysta z **GitHub Releases** - bez własnego serwera.
 
 1. Numer wersji jest w jednym miejscu: `Directory.Build.props` (`<Version>`), a workflow nadpisuje go
    tagiem (`-p:Version=...`). Dzięki temu wersja w aplikacji zawsze odpowiada wydaniu.
@@ -112,7 +112,7 @@ i `SHADERSTUDIO_REPO_NAME`. Token `SHADERSTUDIO_GITHUB_TOKEN` (opcjonalny) podno
 
 ```
 src/ShaderStudio.Core/          schemat, wykrywanie instalacji, tłumaczenia, profile, aktualizacje
-src/ShaderStudio.App/           UI (Avalonia, budowane w kodzie – sterowane schematem)
+src/ShaderStudio.App/           UI (Avalonia, budowane w kodzie - sterowane schematem)
 src/ShaderStudio.App/Assets/    ikona aplikacji
 installer/ShaderStudio.wxs      definicja instalatora MSI (WiX 5)
 tests/ShaderStudio.Core.Tests/  testy xunit
@@ -122,7 +122,7 @@ tests/ShaderStudio.Core.Tests/  testy xunit
 ## Uwaga prawna
 
 - W repozytorium **nie ma i nie może być** plików shaderów (np. CoreFX), `dxgi.dll` ani presetów
-  ReShade – ich licencje zabraniają redystrybucji. Folder `CoreFX_Legacy_FiveM/` jest wpisany do
+  ReShade - ich licencje zabraniają redystrybucji. Folder `CoreFX_Legacy_FiveM/` jest wpisany do
   `.gitignore` i służy wyłącznie jako lokalny materiał testowy.
 - Aplikacja modyfikuje tylko plik konfiguracyjny już zainstalowanych shaderów, na komputerze
   użytkownika, i nie dołącza do niego żadnych treści.

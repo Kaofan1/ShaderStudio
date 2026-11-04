@@ -157,7 +157,7 @@ public sealed class MainWindow : Window
         });
         brand.Children.Add(new TextBlock
         {
-            Text = "FiveM / ReShade — edytor ustawień shaderów",
+            Text = "FiveM / ReShade - edytor ustawień shaderów",
             FontSize = 11,
             Foreground = Palette.TextMutedBrush,
         });
@@ -633,7 +633,7 @@ public sealed class MainWindow : Window
         panel.Children.Add(new TextBlock
         {
             Text = "Shader Studio edytuje plik CustomShaders\\settings.json z Twojej własnej instalacji shaderów.\n"
-                 + "Aplikacja nie zawiera żadnych shaderów ani plików ReShade — pracuje tylko na plikach, które już masz.\n\n"
+                 + "Aplikacja nie zawiera żadnych shaderów ani plików ReShade - pracuje tylko na plikach, które już masz.\n\n"
                  + "1. Kliknij \"Folder...\" u góry.\n"
                  + "2. Wskaż folder plugins FiveM (ten z podfolderem CustomShaders),\n"
                  + "   np. %LOCALAPPDATA%\\FiveM\\FiveM.app\\plugins\n"
@@ -680,7 +680,7 @@ public sealed class MainWindow : Window
         }
 
         _statusMessage.Text = _catalog.IsDirty
-            ? "Zmiany niezapisane — plik settings.json nie został jeszcze zmieniony."
+            ? "Zmiany niezapisane - plik settings.json nie został jeszcze zmieniony."
             : "Brak zmian.";
         _statusMessage.Foreground = _catalog.IsDirty ? Palette.WarningBrush : Palette.TextMutedBrush;
     }
@@ -888,7 +888,7 @@ public sealed class MainWindow : Window
             var script = UpdateInstaller.WriteApplyScript(staged, UpdateInstaller.CurrentExecutablePath, Environment.ProcessId);
             UpdateInstaller.LaunchApplyScript(script);
 
-            SetMessage("Aktualizacja gotowa — aplikacja zostanie uruchomiona ponownie.", Palette.Success);
+            SetMessage("Aktualizacja gotowa - aplikacja zostanie uruchomiona ponownie.", Palette.Success);
             await Task.Delay(400);
             Close();
         }
